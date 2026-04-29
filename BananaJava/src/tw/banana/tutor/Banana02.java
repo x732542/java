@@ -15,6 +15,7 @@ public class Banana02 {
 		System.out.printf("x =%d",x);
 		int y = scanner.nextInt();
 		System.out.printf("y= %d\n",y);
+		int a = 1;
 		
 		int r1 = x+y;
 		int r2 = x-y;
