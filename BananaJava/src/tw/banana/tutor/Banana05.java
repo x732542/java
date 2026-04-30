@@ -21,6 +21,26 @@ public class Banana05 {
 			System.out.println("D");
 		}else {
 			System.out.println("E");}
+		
+		if (score >= 60) {
+		    if (score >= 70) {
+		        if (score >= 80) {
+		            if (score >= 90) {
+		                System.out.println("A");
+		            } 
+		            else {
+		                System.out.println("B");
+		            }
+		        } else {
+		            System.out.println("C");
+		        }
+		    } else {
+		        System.out.println("D");
+		        }
+			}
+		else {
+			System.out.println("E");
 		}
-	}
-
+		
+	}	
+}
