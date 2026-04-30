@@ -3,7 +3,7 @@ package tw.banana.tutor;
 public class Banana09 {
 	public static void main(String[] args) {
 		double temp = Math.random();
-		int year = (int)( temp * 2026);
+		int year = (int)(temp * 2026);
 		boolean isLeap = false;
 		if(year % 4 ==0) {
 			if(year % 100 ==0) {

@@ -1,7 +1,6 @@
 package tw.banana.tutor;
 
 public class Banana11 {
-
 	public static void main(String[] args) {
 		final int ROWS = 2;
 		final int CLOS = 4;
