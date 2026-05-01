@@ -7,6 +7,7 @@ public class HomeWork2 {
 		byte[] dicerecords = new byte[100];
 			for (byte i = 0; i < 100; i++) {
 				double temp = Math.random();
+				// temp  *上限 + 下限
 				byte dice = (byte) ((temp * 6) + 1);
 //				System.out.println(dice);
 // 把生出的變數塞進去
