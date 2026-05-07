@@ -22,12 +22,14 @@ public class Banana38 {
 		List<Character> list = new ArrayList<>();
 		for (char c : chars) list.add(c);
 		
+		int magicNumber = list.size(); // 神奇數字 = 串列原始長度
 		int index = 0;
 		int dir = 1;	// 1 : 順; -1 : 逆
 		int counter = 0;
 		
 		while (list.contains('x')) {
 			char current = list.get(index);
+			
 			
 			if (current == 'x') {
 				list.remove(index);
