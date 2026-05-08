@@ -11,12 +11,14 @@ public class Bike {
 	 */
 	
 	
-	public void upSpeed() {
+	public Bike upSpeed() {
 		speed = speed < 1 ? 1 : speed * 1.4;
+		return this;
 	}
 
-	public void downSpeed() {
+	public Bike downSpeed() {
 		speed = speed < 1 ? 0 : speed * 0.7;
+		return this;
 
 	}
 
