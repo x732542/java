@@ -1,6 +1,8 @@
 package tw.Ban.apis;
 
-public class Bike {
+import java.io.Serializable;
+
+public class Bike implements Serializable{
 	// has-a 擁有
 	protected double speed;
 	/*
