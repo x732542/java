@@ -2,12 +2,19 @@ package tw.banana.tutor;
 
 public class Banana67 {
 	public static void main(String[] args) {
+		System.out.println("start");
 		Brad671 t1 = new Brad671("a");
 		Brad671 t2 = new Brad671("b");
 		Thread t3 = new Thread(new Brad672("c"));
 		t1.start();
 		t2.start();
 		t3.start();
+		try {
+			t1.join();
+			t2.join();
+			t3.join();
+		} catch (Exception e) {
+		}
 		System.out.println("main");
 	}
 }
