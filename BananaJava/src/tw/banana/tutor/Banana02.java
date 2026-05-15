@@ -10,7 +10,7 @@ public class Banana02 {
 //		不初始化無法使用
 		Scanner scanner = new Scanner(System.in);
 //		System.out.print(scanner);
-		
+
 		System.out.print("x");
 		int x = scanner.nextInt();
 		System.out.printf("x =%d", x);
@@ -22,7 +22,7 @@ public class Banana02 {
 		int r3 = x * y;
 		int r4 = x / y;
 		int r5 = x % y;
-		//執行上效能幾乎沒差 但塞入函示可能導致重複運算 用變數接是更優解
+		// 執行上效能幾乎沒差 但塞入函示可能導致重複運算 用變數接是更優解
 		System.out.printf("%d + %d = %d\n", x, y, x + y);
 		System.out.printf("%d - %d = %d\n", x, y, x - y);
 		System.out.printf("%d * %d = %d\n", x, y, r3);
