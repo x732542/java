@@ -76,7 +76,7 @@ public class Jdbc10 {
 				String picurl = food.getString("PicURL");
 				String lat = food.getString("Latitude");
 				String lng = food.getString("Longitude");
-				
+				//------------------------------------------
 				pstmt.setString(1, name);
 				pstmt.setString(2, tel);
 				pstmt.setString(3, addr);
@@ -93,9 +93,12 @@ public class Jdbc10 {
 					pstmt.setDouble(9, 0.0);
 				}
 				
-				pstmt.executeUpdate();
+				pstmt.addBatch();
 			}
-			System.out.println("OK");
+			
+			pstmt.executeBatch();
+			
+			System.out.println("OK2");
 		}catch(Exception e) {
 			System.out.println(e);
 		}
