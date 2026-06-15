@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			function test1() {
+				let url ="brad20.jsp";
+				$('#lottery').load(url);
+			}
+			function test2() {
+				let url ="brad20.jsp?max="+ $('max').val()";
+				$.get(url,function(data,status){
+					if(status =='success'){
+						$('#lottery').html(data);
+					}
+				});
+			}
+			function test3(){
+				let url ="brad20.jsp";
+				$.post(url,{
+					"max":$('max').val()
+				},function(data, status){					
+					if(status =='success'){
+						$('#lottery').html(data);
+					}
+				});					
+			}
+			function test4() {
+				let url ="brad20.jsp";
+				$.ajax({
+					url: url,
+					method: 'get',
+					data: {
+					"max":$('max').val()
+					},
+					success: function (data) {
+						$('#lottery').html(data);
+					},
+				});
+			}
+		</script>
+	</head>
+	<body>
+		Lottery:<span id="lottery"></span><br />
+		<input type="number" id="max" /><br />
+		<input type="button" onclick="test1()" value="Test1"><br />
+		<input type="button" onclick="test2()" value="Test2"><br />
+		<input type="button" onclick="test3()" value="Test3"><br />
+		<input type="button" onclick="test4()" value="Test4"><br />
+	</body>
+</html>

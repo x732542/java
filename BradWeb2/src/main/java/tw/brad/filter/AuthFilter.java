@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class AuthFilter extends HttpFilter implements Filter {
 	private static final Set<String> WHITE_LIST = Set.of(
 			"/login", "/checkAccount", "/public", "/css", "/js", "/img"
