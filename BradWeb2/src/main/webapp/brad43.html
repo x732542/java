@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- 
+	{
+		employee: "xxx",
+		customer: "xxx",
+		orderdate: "1999-01-02",
+		total: 123,
+		details: [
+			{
+				pname: "xxx",
+				price: 12,
+				qty: 4,
+				sum: 48
+			},
+			{
+				pname: "xxx",
+				price: 12,
+				qty: 4,
+				sum: 48
+			},
+			{
+				pname: "xxx",
+				price: 12,
+				qty: 4,
+				sum: 48
+			}
+			
+		]
+	}
+
+ -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+				<style>
+			table {border-collapse:collapse; width: 100%}
+			th,td {border: 1px solid #ccc; padding:8px}
+		</style>
+		<script type="text/javascript">
+			let url = "brad44.jsp";
+			function search(){
+				$.ajax({
+					url: url,
+					method: "get",
+					data: {
+						"orderId": $('#orderId').val()
+					},
+					success: function(order){
+						//console.log(order);
+						$("#orderDate").html(order.orderdate);
+						$("#customer").html(order.customer);
+						$("#employee").html(order.employee);
+						$("#total").html(order.total);
+					
+						
+						$('#table').empty();
+							$('#table').append(
+							'<tr>'+
+								'<th>Index</th>' +
+								'<th>Product Name</th>' +
+								'<th>Price</th>' +
+								'<th>Qty.</th>' +
+								'<th>Sum</th>' +
+							'</tr>'		
+									
+							);
+						$(order.details).each(function (i,row) {
+							$('#table').append(
+							'<tr>'+
+								'<td>' + (i+1)     +'</td>' +
+								'<td>' + row.pname +'</td>' +
+								'<td>' + row.price +'</td>' +
+								'<td>' + row.qty   +'</td>' +
+								'<td>' + row.sum   +'</td>' +
+							'</tr>'		
+							);
+							
+						});
+						
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Northwind Big Company</h1>
+		<hr />
+		<div>
+			<label>Order ID</label>
+			<input id="orderId" />
+			<input type="button" onclick="search()" value="Search" />
+		</div> 
+		<hr />
+		<div>
+			<label>Order Date: <span id="orderDate"></span></label>
+		</div>
+		<div>
+			<label>Customer: <span id="customer"></span></label>
+		</div>
+		<div>
+			<label>Employee: <span id="employee"></span></label>
+		</div>
+		<table id="table"></table>
+		<div>Total: <span id="total"></span></div>
+		
+		
+		
+	</body>
+</html>

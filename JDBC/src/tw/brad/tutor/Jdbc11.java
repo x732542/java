@@ -17,23 +17,23 @@ public class Jdbc11 {
 	public static void main(String[] args) {
 		try {
 			URL url = new URL("https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx");
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-			String line;
-			StringBuffer sb = new StringBuffer();
-			while ((line = reader.readLine()) != null) {
+			HttpURLConnection conn =  (HttpURLConnection)url.openConnection();
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(conn.getInputStream()));
+			
+			String line; StringBuffer sb = new StringBuffer();
+			while ( (line = reader.readLine()) != null) {
 				sb.append(line);
 			}
 			reader.close();
-
+			
 			parseJSON(sb.toString());
-
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-
+	
 	final static String URL = "jdbc:mysql://localhost:3306/brad";
 	final static String SQL_DEL_ALL = """
 			DELETE FROM food
@@ -46,25 +46,26 @@ public class Jdbc11 {
 			(name, tel, addr, feature, city, town, picurl, lat, lng)
 			VALUES
 			(?,?,?,?,?,?,?,?,?)
-			""";
-
+			""";	
+	
 	static void parseJSON(String json) {
 		JSONArray root = new JSONArray(json);
 		System.out.println(root.length());
-
+		
 		Properties prop = new Properties();
 		prop.put("user", "root");
 		prop.put("password", "root");
 		prop.put("useSSL", false);
-
-		try (Connection conn = DriverManager.getConnection(URL, prop);
-				PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT);) {
-
+		
+		try (Connection conn =  DriverManager.getConnection(URL, prop);
+			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT);
+				){		
+			
 			pstmt.execute(SQL_DEL_ALL);
 			pstmt.execute(SQL_ONE);
-
-			for (int i = 0; i < root.length(); i++) {
-
+			
+			for (int i=0; i<root.length(); i++) {
+				
 				JSONObject food = root.getJSONObject(i);
 				String name = food.getString("Name");
 				String tel = food.getString("Tel");
@@ -75,7 +76,7 @@ public class Jdbc11 {
 				String picurl = food.getString("PicURL");
 				String lat = food.getString("Latitude");
 				String lng = food.getString("Longitude");
-				// --------------------------------------
+				
 				pstmt.setString(1, name);
 				pstmt.setString(2, tel);
 				pstmt.setString(3, addr);
@@ -83,20 +84,19 @@ public class Jdbc11 {
 				pstmt.setString(5, city);
 				pstmt.setString(6, town);
 				pstmt.setString(7, picurl);
-
+				
 				try {
 					pstmt.setDouble(8, Double.parseDouble(lat));
 					pstmt.setDouble(9, Double.parseDouble(lng));
-				} catch (Exception e) {
+				}catch(Exception e) {
 					pstmt.setDouble(8, 0.0);
 					pstmt.setDouble(9, 0.0);
 				}
-
-				pstmt.addBatch();
+				
+				pstmt.executeUpdate();
 			}
-			pstmt.executeBatch();
-			System.out.println("OK2");
-		} catch (Exception e) {
+			System.out.println("OK");
+		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}

@@ -10,7 +10,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class MyFilter extends HttpFilter implements Filter {
 	public MyFilter() {System.out.println("MyFilter");}
 

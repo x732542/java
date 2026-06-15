@@ -11,12 +11,12 @@ public class InitListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		System.out.println("Init");
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("MySQL Driver Load Success");
-		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-		}	
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			System.out.println("MySQL Driver Load Success");
+//		} catch (ClassNotFoundException e) {
+//			System.out.println(e);
+//		}	
 		
 	
 	}
