@@ -5,8 +5,13 @@
 		<property name="connection.url">jdbc:mysql://localhost:3306/brad</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
-		
+
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
+
+		<mapping class="tw.brad.entity.Test"></mapping>
+		<mapping class="tw.brad.entity.Member"></mapping>
+		<mapping class="tw.brad.entity.MemberInfo"></mapping>
+
 	</session-factory>
 </hibernate-configuration>
