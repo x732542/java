@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spring1.dto.Hotel;
@@ -45,9 +46,39 @@ public class Brad10 {
 			hotel.setError(-1);
 			return hotel;
 		}
-		
 	}
 	
+	@GetMapping("/v2/{id}")
+	public Hotel findByIdV2(@PathVariable Long id) {
+		String sql = "SELECT id, name, addr, tel FROM hotel WHERE id = :id";
+		HashMap<String, Long> params = new HashMap<String, Long>();
+		params.put("id", id);
+		
+		Hotel hotel;
+		try {
+			hotel = jdbc.queryForObject(sql, params, hotelRowMapper);
+		}catch(Exception e) {
+			hotel = new Hotel();
+			hotel.setError(-1);
+		}
+		return hotel;
+	}
 	
+	@GetMapping("/search")
+	public List<Hotel> findByKey(@RequestParam String key){
+		String sql = """
+				SELECT id, name, addr, tel 
+				FROM hotel 
+				WHERE 
+					name LIKE :skey OR
+					addr LIKE :skey OR
+					tel LIKE :skey
+				""";
+		HashMap<String, String> params = new HashMap<>();
+		params.put("skey", "%" + key + "%");
+		
+		return jdbc.query(sql, params, hotelRowMapper);
+		
+	}
 	
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#loginForm').on("submit", function(e){
+					e.preventDefault();
+					let account = $('#account').val();
+					let passwd = $('#passwd').val();
+					
+					$.ajax({
+						url : '/api/members/loginV2',
+						type: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify({
+							account: account,
+							passwd: passwd
+						}),
+						success: function(response){
+							console.log(response);
+							if (response.success){
+								location.href = 'index.html';
+							}else{
+								$('mesg').text('Login Failure');
+							}
+						},
+						error: function(xhttp, status, error){
+							console.log(status);
+							console.log(error);
+						}
+					});
+					
+				});
+				
+			});
+		
+		</script>
+	</head>
+	<body>
+		<h1>Login Page</h1>
+		<hr />
+		<form id="loginForm">
+			Account: <input id="account" required="required" /><br />
+			Password: <input type="password" id="passwd" required="required" /><br />
+			<input type="submit" value="Login" /><br />
+			<span id="mesg"></span>
+		</form>		
+	</body>
+</html>
