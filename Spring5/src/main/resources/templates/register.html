@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>註冊頁面</h1>	
+		<hr />
+		<form method="post"  enctype="multipart/form-data" th:object="${memberForm}" th:action="@{/members/register}">
+			<div>
+				<label>帳號(Email)</label>
+				<input type="text" required="required" th:field="*{account}" />
+			</div>
+			<div>
+				<label>密碼</label>
+				<input type="password" required="required" th:field="*{passwd}" />
+			</div>
+			<div>
+				<label>姓名</label>
+				<input type="text" required="required" th:field="*{name}" />
+			</div>
+			<div>
+				<label>頭像</label>
+				<input type="file" th:field="*{iconFile}" />
+			</div>
+			<button type="submit">註冊</button>
+		</form>
+		<div th:if="${error}" th:text="${error}">Error Message</div>
+	</body>
+</html>

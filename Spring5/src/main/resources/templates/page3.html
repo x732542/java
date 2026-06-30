@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Page3</h1>	
+		<hr />
+		<form method="post" th:object="${memberForm}" th:action="@{/pqge3}">
+			<div>
+				<label>Account</label>
+				<input type="text" required="required" th:field="*{account}"/>
+				<span th:if="${#fields.hasError('account')}" th:errors="*{account}">Account 錯誤訊息</span>
+			</div>
+			<div>
+				<label>Password</label>
+				<input type="password" required="required" th:field="*{passwd}"/>
+				<span th:if="${#fields.hasError('passwd')}"th:errors="*{passwd}">Password 錯誤訊息</span>
+			</div>
+			<div>
+				<label>Name</label>
+				<input type="text" required="required" th:field="*{name}"/>
+				<span th:if="${#fields.hasError('name')}" th:errors="*{name}">Password 錯誤訊息</span>
+			</div>
+			<button type="submit">Register</button>
+		</form>
+	</body>
+</html>
