@@ -27,6 +27,15 @@ public class EmployeeController {
 		return ResponseEntity.ok(e);
 	}
 	
+	@GetMapping("/v2/{id}")
+	public ResponseEntity<EmployeeProjection> test3(@PathVariable Integer id) {
+		EmployeeProjection e = repo.searchByEmployeeid(id).orElse(null);
+		if (e == null) {
+			System.out.println("ERROR");
+		}
+		return ResponseEntity.ok(e);
+	}
+	
 	@GetMapping("/title/{key}")
 	public ResponseEntity<List<EmployeeProjection>> test2(@PathVariable String key){
 		return ResponseEntity.ok(repo.searchByTitleStartingWith(key));
