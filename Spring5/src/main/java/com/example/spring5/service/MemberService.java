@@ -32,4 +32,12 @@ public class MemberService {
 		return memberRepo.save(member);
 	}
 	
+	public Member login(String account, String passwd) {
+		Member member = memberRepo.findByAccount(account);
+		if (member != null && BCrypt.checkpw(passwd, member.getPasswd())) {
+			return member;
+		}
+		return null;
+	}
+	
 }

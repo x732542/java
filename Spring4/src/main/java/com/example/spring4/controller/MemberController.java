@@ -16,6 +16,11 @@ import com.example.spring4.entity.Info;
 import com.example.spring4.entity.Member;
 import com.example.spring4.service.MemberService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "會員相關的 API", description = "我全部寫好了")
 @RestController
 @RequestMapping("/members")
 public class MemberController {
@@ -68,8 +73,11 @@ public class MemberController {
 		return ResponseEntity.ok(saveInfo);
 	}
 	
+	@Operation(summary = "查詢會員", description = "就是帶入會員 ID")
 	@GetMapping("/{memberId}")
-	public ResponseEntity<Member> queryMember(@PathVariable Long memberId){
+	public ResponseEntity<Member> queryMember(
+			@Parameter(description = "輸入會員ID")
+			@PathVariable Long memberId){
 		return ResponseEntity.ok(service.findMemberById(memberId));
 	}
 	

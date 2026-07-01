@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			table{border-collapse:collapse; width:80%; margin:2px auto }
+			th, td {border: 1px solid #444; padding: 1px 2px; text-align: center}
+			th {background-color: #f2f2f2}
+		</style>		
+	</head>
+	<body>
+		<h1>Home Page</h1>
+		<hr /><!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			table{border-collapse:collapse; width:80%; margin:2px auto }
+			th, td {border: 1px solid #444; padding: 1px 2px; text-align: center}
+			th {background-color: #f2f2f2}
+		</style>		
+	</head>
+	<body>
+		<h1>Home Page</h1>
+		<hr />
+		<h2>Hello, <span th:text="${member.name}">User</span></h2>
+		<div><img th:src="${icon}"></div>
+		<div><a th:href="@{/members/logout}">Logout</a></div>
+		<hr />
+		<div>
+			<span th:if="${page > 0}"><a th:href="@{/home(page=${page - 1}, size=10)}">Prev</a> |</span> 
+			<span th:text="${page + 1}">2</span> / <span th:text="${hotels.totalPages}">10</span>  
+			<span th:if="${page + 1 < hotels.totalPages}">| <a th:href="@{/home(page=${page + 1}, size=10)}">Next</a></span>
+		</div>	
+		<table>
+			<thead>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Tel</th>
+				<th>Address</th>
+			</thead>
+			<tbody>
+				<tr th:each="hotel : ${hotels.content}">
+					<td th:text="${hotel.id}">123</td>
+					<td th:text="${hotel.name}">123</td>
+					<td th:text="${hotel.tel}">123</td>
+					<td th:text="${hotel.addr}">123</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</body>
+</html>
+		<h2>Hello, <span th:text="${member.name}">User</span></h2>
+		<div><img th:src="${icon}"></div>
+		<div><a th:href="@{/members/logout}">Logout</a></div>
+		<hr />
+		<div>
+			<sapn th:if="${page >0}"><a th:href="@{/home(page=${page-1}, size=10)}">Prev</a>|</sapn>
+			<span th:text="${page+1}">2</span>/<span th:text="${hotels.totalPages}">10</span>
+			<sapn th:if="${page + 1 < hotels.totalPages}">|<a th:href="@{/home(page=${page+1}, size=10)}">Next</a></sapn>
+		</div>	
+		<table>
+			<thead>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Tel</th>
+				<th>Address</th>
+			</thead>
+			<tbody>
+				<tr th:each="hotel : ${hotel.content}">
+					<td th:text="${hotel.id}">123</td>
+					<td th:text="${hotel.name}">123</td>
+					<td th:text="${hotel.tel}">123</td>
+					<td th:text="${hotel.addr}">123</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</body>
+</html>
