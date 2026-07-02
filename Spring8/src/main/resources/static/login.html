@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Login Page</h1>
+		<hr />
+		<form id="loginForm">
+			Account: <input id="account" /><br />
+			Password: <input type="password" id="passwd" /><br />
+			<input type="submit" value="Login" />
+		</form>	
+		<script type="text/javascript">
+			document.getElementById("loginForm").addEventListener("submit", async function(e){
+				e.preventDefault();
+				let account = document.getElementById("account").value.trim();
+				let passwd = document.getElementById("passwd").value.trim();
+				
+				let resp = await fetch("/api/login", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify({
+						"account": account,
+						"passwd": passwd
+					})
+				});
+				
+				let data = await resp.json();
+				console.log(data);
+				if (data.success){
+					localStorage.setItem("token", data.token);
+					window.location.href = "main.html";
+				}else{
+					console.log("login failure");
+				}
+			});
+		
+		
+		
+		</script>
+		
+		
+		
+	</body>
+</html>
