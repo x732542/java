@@ -1,4 +1,4 @@
-package com.example.spring8.util;
+package com.example.spring6.util;
 
 import java.security.Key;
 import java.util.Date;
@@ -32,9 +32,21 @@ public class JwtToken {
 		return subject;
 	}
 	
+	private static Jws<Claims> parse(String token){
+		return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+	}
 	
+	public static String getAccount(String token) {
+		return parse(token).getBody().getSubject();
+	}
 	
-	
-	
+	public static boolean isValid(String token) {
+		try {
+			parse(token);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
 	
 }
