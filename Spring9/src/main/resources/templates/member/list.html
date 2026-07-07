@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+		
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div th:replace="~{member/layout::main-layout(~{::title},~{::#member-content})}">
+			<title>會員標題</title>
+			<div id="member-content">
+				<h1>會員列表</h1>
+				<table>
+					<tr th:each="m : ${members}">
+					<td tn:text="${m.name}">Name</td>
+					</tr>						
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

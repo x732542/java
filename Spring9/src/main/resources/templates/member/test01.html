@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Member Test01</h1>
+		<hr />
+		<div th:text="${name}"></div>	
+		<div th:utext="${name}"></div>	
+		<hr />
+		
+		<input type="text" th:value="${member.name}" /><br />
+		<input type="text" th:value="${member.age}" /><br />
+		<button id="edit" type="button"
+				th:attr="data-id=${member.id}, title='編輯使用者' + ${member.id},
+					disabled=${!member.isAdmin}? disabled: null">
+			編輯資料
+		</button>
+		<script>
+			document.getElementById('edit').addEventListener("click", function(){
+				console.log(this.getAttribute('data-id'));
+			});
+		</script>
+		
+		
+	</body>
+</html>

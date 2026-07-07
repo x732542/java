@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Main Page</h1>
+		<h2 th:text="${title}"></h2>
+		<form th:action="@{/logout}" method="post">
+			<button type="submit">Logout</button>
+		</form>
+		<hr />	
+		<div>Account: <span sec:authentication="name"></span></div>
+		<div>Role: <span sec:authentication="principal.authorities"></span></div>
+		<hr />
+		<a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">管理員主頁</a>
+		
+		
+		
+		
+	</body>
+</html>

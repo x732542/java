@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<div th:fragment="main-layout(title,content)">
+		<head>
+			<meta charset="UTF-8">
+			<title>Insert title here</title>
+			<th:block th:replace=${title}></th:block>
+		</head>
+		<body>
+			<header><nav>共用的導覽列</nav></header>
+			
+			<main>
+				<div th:replace="${content}"></div>
+			</main>
+			
+			<footer>共用的頁尾</footer>
+		
+		</body>
+	</div>
+</html>
